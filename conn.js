@@ -160,7 +160,8 @@ participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "" } : {})
 "fileName": `GuraBot-MD ${ngazap(prefix)}`,
 "fileEncSha256": "ybdZlRjhY+aXtytT0G2HHN4iKWCFisG2W69AVPLg5yk="
 }}}
-conn.sendMessage(from, { text: "Maaf kak, kamu belum terdaftar di database bot, silahkan klik button *Verify* untuk memverifikasi.", buttons:[{buttonId: "#verify", buttonText:{displayText:"Verify"}, type:1}], footer: `${botName} © 2022`}, { quoted: fkontak })
+const sendMessobject = (jid) => {conn.sendMessage(jid, { text: `Maaf @${sender.split('@')[0]}, kamu belum terdaftar di database bot, klik button *Verify* untuk memverifikasi.`, buttons: [{buttonId: '#verify', buttonText: {displayText: 'Verify'}, type: 1}], footer: `${botName} © 2022`, contextInfo: { forwardingScore: 9999999, isForwarded: true }, mentions: [sender]}, { quoted: fkontak })}
+
 
 const q1 = q.split('&')[0];
 const q2 = q.split('&')[1];
@@ -325,7 +326,7 @@ mentions(`Berhasil mengirimkan undangan chat ke @${penerimanyo.split('@')[0]} tu
 let roomC = `#${makeid(10)}`
 fs.unlinkSync(PathAuto + sender.split('@')[0] + '.json')
 var text_tersambung =`*Seseorang Mengajak Chating*\n\n*Dari:* Rahasia\n\nSilahkan klik button ya kak jika ingin menghubungkan chat *ANONYMOUS*`
-let btn_room = [{ buttonId: `${prefix}buat_room_chat ${sender}|${data_deposit.data.penerima}@s.whatsapp.net|${roomC}`, buttonText: { displayText: 'Terima️' }, type: 1 }]
+let btn_room = [{ buttonId: `${prefix}buat_room_chat ${sender}|${data_deposit.data.penerima}@s.whatsapp.net|${roomC}`, buttonText: { displayText: '【 *TERIMA* 】' }, type: 1 }]
 var but_room = {
 text: text_tersambung,
 footer: 'Klik button untuk menerima chat.',
@@ -1066,7 +1067,7 @@ https://wa.me/6285791220179
 https://wa.me/6285791220179
 
 *_VIA : SEMUA PEMBAYARAN BISA
- KECUALI PULSA 🗿
+ KECUALI PULSA 🗿_*
 
 *No Admin Reall Hanya*
 *Di Atas, Selain Itu Clone*‼️
@@ -1075,6 +1076,8 @@ reply(menu_list)
 }
 break
 case 'menu':{
+hem = fs.readFileSync('./sticker/Rama.jpg');
+conn.sendMessage(from, hem, MessageType.image, {quoted: mek, mimetype: 'image/jpg', ptt:true})
 if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
 const more = String.fromCharCode(8206)
 const readmore = more.repeat(4001)
@@ -1447,7 +1450,7 @@ if (!q) return reply(`Masukan parameter text\n*Contoh:*\n${prefix+command} hallo
 let db_orang = JSON.parse(fs.readFileSync('./database/pengguna.json'));
 let data_teks = `${q}`
 for (let i of db_orang){ 
-var button_broadcast = {text: data_teks, footer: '©broadcast', buttons: [{ buttonId: '!menu', buttonText: {displayText: '⋮☰ 𝗠𝗘𝗡𝗨'}, type: 1}],headerType: 1}
+var button_broadcast = {text: data_teks, footer: '©broadcast', buttons: [{ buttonId: '!menu', buttonText: {displayText: '【🔥𝗠𝗘𝗡𝗨🔥】'}, type: 1}],headerType: 1}
 conn.sendMessage(i.id, button_broadcast)
 await sleep(2000)
 }
@@ -1571,7 +1574,7 @@ var buttonMessage = {
 text: tulis_pesan,
 footer: 'klik button untuk menghapus sesi chat',
 buttons: [
-{ buttonId: '#stopchat', buttonText: {displayText: '️⋮☰ 𝗦𝗧𝗢𝗣'}, type: 1}
+{ buttonId: '#stopchat', buttonText: {displayText: '️【 *STOP* 】'}, type: 1}
 ],
 headerType: 1
 }
@@ -1612,7 +1615,7 @@ if (!num) return reply(`Harus di isi semua !!\nex : ${prefix+command} 62857xxx|n
 if (!nama_pengirim) return reply(`Harus di isi semua !!\nex : ${prefix+command} 62857xxx|nama|hallo\n\nnomor hp tanpa spasi`)
 if (!pesan_teman) return reply(`Harus di isi semua !!\nex : ${prefix+command} 62857xxx|nama|hallo\n\nnomor hp tanpa spasi`)
 let text_menfess = `*ANONYMOUS CHAT*\n_Hallo Kak ${ucapanWaktu}_\n_Ada pesan *Menfess/Rahasia*_\n\n*• Dari :* ${nama_pengirim}\n*• Pesan :* ${pesan_teman}\n\n_Pesan ini ditulis oleh seseorang_\n_Bot hanya menyampaikan saja._`
-let btn_menfes = [{ buttonId: `${prefix}buat_room_chat ${sender}|${num}@s.whatsapp.net|${roomC}`, buttonText: { displayText: '⋮☰ 𝗧𝗘𝗥𝗜𝗠𝗔' }, type: 1 }]
+let btn_menfes = [{ buttonId: `${prefix}buat_room_chat ${sender}|${num}@s.whatsapp.net|${roomC}`, buttonText: { displayText: '【 *BALAS* 】' }, type: 1 }]
 var button_menfess = {
 text: text_menfess,
 footer: 'Klik button untuk membalas chat.',
