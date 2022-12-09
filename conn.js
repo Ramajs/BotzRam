@@ -1005,13 +1005,18 @@ console.log(colors.green.bold("[Private]") + " " + colors.brightCyan(time,) + " 
 
 switch(command) {
 case 'verify':{
-if (cekUser("id", sender) !== null) return reply('Kamu sudah terdaftar !!')
+if (cekUser("id", sender) !== null) return reply('Kamu sudah terdaftar di database.')
+try {
+var ppnu = await conn.profilePictureUrl(sender, 'image')
+} catch {
+var ppnu = 'https://telegra.ph/file/6880771a42bad09dd6087.jpg'
+}
 var res_us = `${makeid(10)}`
 var user_name = `#GR${makeid(5)}`
 let object_user = {"id": sender, "name": user_name, "seri": res_us, "premium": false }
 db_user.push(object_user)
 fs.writeFileSync('./database/pengguna.json', JSON.stringify(db_user, 2, null))
-mentions(`𝖬𝖾𝗆𝗎𝖺𝗍 𝖴𝗌𝖾𝗋 @${sender.split("@")[0]}`, [sender])
+mentions(`*Wait, Loading user* @${sender.split("@")[0]}`, [sender])
 await sleep(1500)
 var verify_teks =`───「 𝗧𝗘𝗥𝗩𝗘𝗥𝗜𝗙𝗜𝗞𝗔𝗦𝗜 」────
 
