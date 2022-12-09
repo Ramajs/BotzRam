@@ -1019,10 +1019,9 @@ var verify_teks =`───「 𝗧𝗘𝗥𝗩𝗘𝗥𝗜𝗙𝗜𝗞𝗔𝗦�
 │• *Name :* @${sender.split('@')[0]}
 │• *Id :* ${user_name}
 │• *Seri :* ${res_us}
-│• *User Ke :* ${user.length}
-│• *Status :* ${isOwner? 'Owner':'User'} ${botName}
+│• *Waktu :* ${ jam } WIB
+│• *Tanggal :* ${ tanggal }
 ╰────────⬣
-
 
 SCRIPT BY : RAMAA GNNZ
 YT : https://youtube.com/@ramaagnnz961
@@ -1079,8 +1078,6 @@ const more = String.fromCharCode(8206)
 const readmore = more.repeat(4001)
 var no = 1
 var ad = 1
-hem = fs.readFileSync('./sticker/Rama.jpg');
-conn.sendMessage(from, hem, MessageType.image, {quoted: mek, mimetype: 'image/jpg', ptt:true})
 let namenya = `${cekUser("name", sender)}`
 let premnya = `${cekUser("premium", sender)? 'Aktif':'Tidak'}`
 let usernya = `${("id", db_user).length}`
