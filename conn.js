@@ -1019,8 +1019,6 @@ var verify_teks =`───「 𝗧𝗘𝗥𝗩𝗘𝗥𝗜𝗙𝗜𝗞𝗔𝗦�
 │• *Name :* @${sender.split('@')[0]}
 │• *Id :* ${user_name}
 │• *Seri :* ${res_us}
-│• *Waktu :* ${ jam } WIB
-│• *Tanggal :* ${ tanggal }
 ╰────────⬣
 
 SCRIPT BY : RAMAA GNNZ
@@ -1099,6 +1097,9 @@ mentions: [sender, mark_slebew],
 headerType: 1
 }
 conn.sendMessage(from, but_menu, {quoted:msg})
+}
+hem = fs.readFileSync('./sticker/Rama.jpg');
+conn.sendMessage(m.chat, {image: fs.readFileSync('./foto.jpg'), caption:'_'}, {quoted:m})
 }
 break
 case 'donate':
