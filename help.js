@@ -4,11 +4,6 @@
 
 var monoSpace = '```'
 
-case 'menu':{
-hem = fs.readFileSync('./sticker/Rama.jpg');
-conn.sendMessage(from, hem, MessageType.image, {quoted: mek, mimetype: 'image/jpg', ptt:true})
-break
-
 exports.listmenu = (sender,prefix,ad,namenya,premnya,usernya,romnya,tanggal,jam,no) => {
 return`
 ━━━❲ 𝙍𝘼𝙈𝘼𝘼 𝗕𝗢𝗧-𝙈𝘿 ━━━
