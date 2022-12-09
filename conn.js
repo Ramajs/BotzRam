@@ -1015,12 +1015,14 @@ mentions(`𝖬𝖾𝗆𝗎𝖺𝗍 𝖴𝗌𝖾𝗋 @${sender.split("@")[0]}`, [
 await sleep(1500)
 var verify_teks =`───「 𝗧𝗘𝗥𝗩𝗘𝗥𝗜𝗙𝗜𝗞𝗔𝗦𝗜 」────
 
-○ ID : @${sender.split('@')[0]}
-○ Name : ${user_name}
-○ Seri : ${res_us}
+╭───────⬣
+│• *Name :* @${sender.split('@')[0]}
+│• *Id :* ${user_name}
+│• *Seri :* ${res_us}
+│• *User Ke :* ${user.length}
+│• *Status :* ${isOwner? 'Owner':'User'} ${botName}
+╰────────⬣
 
-silahkan ketik *#rules*
-untuk melihat aturan bot
 
 SCRIPT BY : RAMAA GNNZ
 YT : https://youtube.com/@ramaagnnz961
@@ -1041,17 +1043,13 @@ case 'iklan':{
 if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
 var strip = '```'
 var menu_list =`
-_Utamakan chat to the point_ 🚀
-
-*_Admin hanya melayani chat_*
-
 ${strip}Telpon/Spam blokir 🚫${strip}
 
 *✦ LAYANAN KEBUTUHAN BOT ||*
 
 ----
 
-*╰►* OPEN MURID PEMBUATANAN BOT "35K"
+*╰►* OPEN MURID PEMBUATAN BOT "35K"
 https://wa.me/6285791220179
 
 *╰►* JASA RUN BOT VARCEL "23K"
@@ -1141,7 +1139,7 @@ if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
 if (!q) return reply('Contoh:\n#wikimedia viral')
 fetchJson(`https://saipulanuar.ga/api/search/wikimedia?query=${q}&apikey=jPHjZpQF`)
 .then(wk =>{
-var text_wikimedia =`*WIKIMEDIA SEARCH*
+var text_wikimedia =`*│WIKIMEDIA SEARCH│*
 *title:* ${wk.result.title}
 *source:* ${wk.result.source}
 *author:* wikimedia`
@@ -1636,17 +1634,12 @@ let text_buysc =`*_Mau beli scriptnya? harga murah kok._*
 *Admin1:*
 *Wa.me/6285791220179*
 
-*Admin2:*
-*Wa.me/6285791220179*
-
-_*Harga Normal :*_ ~Rp50.000~
-*_Harga Promo : Rp30.000_*
+*_Harga Promo : Rp40.000_*
 
 _Sudah Termasuk Tutorial_
 _Script Sudah Disusun Rapih_
 _Size Script Sudah Ringan_
 _Anti Ngelag - Anti Delay_
-_Anti Spam - Anti Call_
 _Total Fitur 600+_
 _Topup & Deposit_`
 conn.sendMessage(from, { text: text_buysc }, { quoted: msg })
