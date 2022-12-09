@@ -1015,11 +1015,9 @@ mentions(`𝖬𝖾𝗆𝗎𝖺𝗍 𝖴𝗌𝖾𝗋 @${sender.split("@")[0]}`, [
 await sleep(1500)
 var verify_teks =`───「 𝗧𝗘𝗥𝗩𝗘𝗥𝗜𝗙𝗜𝗞𝗔𝗦𝗜 」────
 
-╭───────⬣
-│• *Name :* @${sender.split('@')[0]}
-│• *Id :* ${user_name}
-│• *Seri :* ${res_us}
-╰────────⬣
+• Name : @${sender.split('@')[0]}
+• Id : ${user_name}
+• Seri : ${res_us}
 
 SCRIPT BY : RAMAA GNNZ
 YT : https://youtube.com/@ramaagnnz961
