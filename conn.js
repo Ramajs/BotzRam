@@ -162,7 +162,6 @@ participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "" } : {})
 }}}
 const sendMessobject = (jid) => {conn.sendMessage(jid, { text: `Maaf @${sender.split('@')[0]}, kamu belum terdaftar di database bot, klik button *Verify* untuk memverifikasi.`, buttons: [{buttonId: '#verify', buttonText: {displayText: 'Verify'}, type: 1}], footer: `${botName} © 2022`, contextInfo: { forwardingScore: 9999999, isForwarded: true }, mentions: [sender]}, { quoted: fkontak })}
 
-
 const q1 = q.split('&')[0];
 const q2 = q.split('&')[1];
 const q3 = q.split('&')[2];	
