@@ -1096,7 +1096,6 @@ headerType: 1
 }
 conn.sendMessage(from, but_menu, {quoted:msg})
 }
-hem = fs.readFileSync('./sticker/Rama.jpg');
 conn.sendMessage(m.chat, {image: fs.readFileSync('./foto.jpg'), caption:'_'}, {quoted:m})
 }
 break
