@@ -160,6 +160,7 @@ participant: `0@s.whatsapp.net`, ...(from ? { remoteJid: "" } : {})
 "fileName": `GuraBot-MD ${ngazap(prefix)}`,
 "fileEncSha256": "ybdZlRjhY+aXtytT0G2HHN4iKWCFisG2W69AVPLg5yk="
 }}}
+conn.sendMessage(from, { text: "Maaf kak, kamu belum terdaftar di database bot, silahkan klik button *Verify* untuk memverifikasi.", buttons:[{buttonId: "#verify", buttonText:{displayText:"Verify"}, type:1}], footer: `${botName} © 2022`}, { quoted: fkontak })
 
 const q1 = q.split('&')[0];
 const q2 = q.split('&')[1];
