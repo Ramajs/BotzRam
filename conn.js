@@ -1007,7 +1007,7 @@ switch(command) {
 case 'verify':{
 if (cekUser("id", sender) !== null) return reply('Kamu sudah terdaftar di database.')
 try {
-var ppnu = await conn.profilePictureUrl(sender, 'image')
+var ppnu = await ronzz.profilePictureUrl(sender, 'image')
 } catch {
 var ppnu = 'https://telegra.ph/file/6880771a42bad09dd6087.jpg'
 }
@@ -1088,6 +1088,7 @@ const mark_slebew = '0@s.whatsapp.net'
 var footer_nya =`Powerd By - @${mark_slebew.split("@")[0]}`
 var menu_nya =`${listmenu(sender,prefix,ad,namenya,premnya,usernya,romnya,tanggal,jam,no)}`
 let btn_menu = [
+conn.sendMessage(m.chat, {image: fs.readFileSync('./foto.jpg'), caption:'_'}, {quoted:m})
 {buttonId: `${prefix}donasi`, buttonText: { displayText: '【𝗗𝗢𝗡𝗔𝗦𝗜】' }, type: 1 },
 {buttonId: `${prefix}owner`, buttonText: { displayText: '【𝗢𝗪𝗡𝗘𝗥】' }, type: 1 },
 {buttonId: `${prefix}rules`, buttonText: { displayText: '【𝗥𝗨𝗟𝗘𝗦】' }, type: 1 }
@@ -1100,8 +1101,6 @@ mentions: [sender, mark_slebew],
 headerType: 1
 }
 conn.sendMessage(from, but_menu, {quoted:msg})
-}
-conn.sendMessage(m.chat, {image: fs.readFileSync('./foto.jpg'), caption:'_'}, {quoted:m})
 }
 break
 case 'donate':
