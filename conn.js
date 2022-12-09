@@ -1076,13 +1076,13 @@ reply(menu_list)
 }
 break
 case 'menu':{
-hem = fs.readFileSync('./sticker/Rama.jpg');
-conn.sendMessage(from, hem, MessageType.image, {quoted: mek, mimetype: 'image/jpg', ptt:true})
 if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
 const more = String.fromCharCode(8206)
 const readmore = more.repeat(4001)
 var no = 1
 var ad = 1
+hem = fs.readFileSync('./sticker/Rama.jpg');
+conn.sendMessage(from, hem, MessageType.image, {quoted: mek, mimetype: 'image/jpg', ptt:true})
 let namenya = `${cekUser("name", sender)}`
 let premnya = `${cekUser("premium", sender)? 'Aktif':'Tidak'}`
 let usernya = `${("id", db_user).length}`
