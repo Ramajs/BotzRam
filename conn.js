@@ -1108,7 +1108,6 @@ case 'donasi':{
 var monoSpace = '```'
 let cekName = `${cekUser("name", sender)}`
 reply(donasiBot(cekName,ucapanWaktu))
-image: fs.readFileSync('./sticker/qris.jpg'),
 }
 break
 case 'infoowner':
