@@ -1016,7 +1016,7 @@ var user_name = `#GR${makeid(5)}`
 let object_user = {"id": sender, "name": user_name, "seri": res_us, "premium": false }
 db_user.push(object_user)
 fs.writeFileSync('./database/pengguna.json', JSON.stringify(db_user, 2, null))
-mentions(`*Wait, Loading user* @${sender.split("@")[0]}`, [sender])
+mentions(`*Wait, Loading user🔥* @${sender.split("@")[0]}`, [sender])
 await sleep(1500)
 var verify_teks =`───「 𝗧𝗘𝗥𝗩𝗘𝗥𝗜𝗙𝗜𝗞𝗔𝗦𝗜 」────
 
