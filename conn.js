@@ -195,12 +195,12 @@ conn.groupParticipantsUpdate(from, [sender], "remove")
 
 if (isGroup && isAutoDownTT){
 if (chats.match(/(tiktok.com)/gi)){
-reply('Tunggu bentar, bot masih mengirim Vidio nya...')
+reply('Url tiktok terdekteksi\nWait mengecek data url.')
 await sleep(3000)
 var tt_res = await fetchJson(`https://saipulanuar.ga/api/download/tiktok2?url=${chats}&apikey=jPHjZpQF`)
-reply(`𝗧𝗜𝗞𝗧𝗢𝗞 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗⬇️
+reply(`𝗧𝗜𝗞𝗧𝗢𝗞 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗
 
-*Author* : Ramaa gnnz
+𝘼𝙪𝙩𝙝𝙤𝙧: Ramaa Gnnz
 𝙅𝙪𝙙𝙪𝙡: ${tt_res.result.judul}
 𝙎𝙤𝙪𝙧𝙘𝙚: ${chats}
 
@@ -1020,9 +1020,9 @@ mentions(`*Wait, Loading user🔥* @${sender.split("@")[0]}`, [sender])
 await sleep(1500)
 var verify_teks =`───「 𝗧𝗘𝗥𝗩𝗘𝗥𝗜𝗙𝗜𝗞𝗔𝗦𝗜 」────
 
-⬣ Name : @${sender.split('@')[0]} 👤
-⬣ Id : ${user_name} 🍁
-⬣ Seri : ${res_us}  🌼
+• Name : @${sender.split('@')[0]}
+• Id : ${user_name}
+• Seri : ${res_us}
 
 SCRIPT BY : RAMAA GNNZ
 YT : https://youtube.com/@ramaagnnz961
@@ -1032,7 +1032,7 @@ text: verify_teks,
 footer: 'Klik button untuk melihat menu',
 mentions: [sender],
 buttons: [
-{ buttonId: '#menu', buttonText: {displayText: '️【 𝗠𝗘𝗡𝗨 】'}, type: 1}
+{ buttonId: '#menu', buttonText: {displayText: '️【𝗠𝗘𝗡𝗨】'}, type: 1}
 ],
 headerType: 1
 }
@@ -1087,9 +1087,9 @@ const mark_slebew = '0@s.whatsapp.net'
 var footer_nya =`Powerd By - @${mark_slebew.split("@")[0]}`
 var menu_nya =`${listmenu(sender,prefix,ad,namenya,premnya,usernya,romnya,tanggal,jam,no)}`
 let btn_menu = [
-{buttonId: `${prefix}donasi`, buttonText: { displayText: '【 𝗗𝗢𝗡𝗔𝗦𝗜 】' }, type: 1 },
-{buttonId: `${prefix}owner`, buttonText: { displayText: '【 𝗢𝗪𝗡𝗘𝗥 】' }, type: 1 },
-{buttonId: `${prefix}groupbot`, buttonText: { displayText: '【 *GRUP BOT* 】' }, type: 1 }
+{buttonId: `${prefix}donasi`, buttonText: { displayText: '【𝗗𝗢𝗡𝗔𝗦𝗜】' }, type: 1 },
+{buttonId: `${prefix}owner`, buttonText: { displayText: '【𝗢𝗪𝗡𝗘𝗥】' }, type: 1 },
+{buttonId: `${prefix}rules`, buttonText: { displayText: '【𝗥𝗨𝗟𝗘𝗦】' }, type: 1 }
 ]
 var but_menu = {
 image: fs.readFileSync('./sticker/Rama.jpg'),
@@ -1117,7 +1117,7 @@ break
 case 'infogempa':
 fetchJson(`https://saipulanuar.ga/api/info/gempa?apikey=jPHjZpQF`)
 .then(xg =>{
-reply(`「 *_INFO GEMPA_*」
+reply(`*INFO GEMPA*
 
 *tanggal:* ${xg.result.tanggal}
 *jam:* ${xg.result.jam}
