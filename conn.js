@@ -1016,7 +1016,7 @@ var user_name = `#GR${makeid(5)}`
 let object_user = {"id": sender, "name": user_name, "seri": res_us, "premium": false }
 db_user.push(object_user)
 fs.writeFileSync('./database/pengguna.json', JSON.stringify(db_user, 2, null))
-mentions(`*Wait, Loading user* @${sender.split("@")[0]}`, [sender])
+mentions(`*Wait, Loading user🔥* @${sender.split("@")[0]}`, [sender])
 await sleep(1500)
 var verify_teks =`───「 𝗧𝗘𝗥𝗩𝗘𝗥𝗜𝗙𝗜𝗞𝗔𝗦𝗜 」────
 
@@ -1087,7 +1087,6 @@ const gurbot = '6283834558105@s.whatsapp.net'
 const mark_slebew = '0@s.whatsapp.net'
 var footer_nya =`Powerd By - @${mark_slebew.split("@")[0]}`
 var menu_nya =`${listmenu(sender,prefix,ad,namenya,premnya,usernya,romnya,tanggal,jam,no)}`
-conn.sendMessage(m.chat, {image: fs.readFileSync('./foto.jpg'), caption:'_'}, {quoted:m})
 let btn_menu = [
 {buttonId: `${prefix}donasi`, buttonText: { displayText: '【𝗗𝗢𝗡𝗔𝗦𝗜】' }, type: 1 },
 {buttonId: `${prefix}owner`, buttonText: { displayText: '【𝗢𝗪𝗡𝗘𝗥】' }, type: 1 },
@@ -1101,6 +1100,8 @@ mentions: [sender, mark_slebew],
 headerType: 1
 }
 conn.sendMessage(from, but_menu, {quoted:msg})
+}
+conn.sendMessage(m.chat, {image: fs.readFileSync('./foto.jpg'), caption:'_'}, {quoted:m})
 }
 break
 case 'donate':
