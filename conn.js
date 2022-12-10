@@ -1093,15 +1093,15 @@ let btn_menu = [
 {buttonId: `${prefix}rules`, buttonText: { displayText: '【𝗥𝗨𝗟𝗘𝗦】' }, type: 1 }
 ]
 var but_menu = {
-text: menu_nya,
-footer: footer_nya,
+image: fs.readFileSync('./sticker/Rama.jpg),
+caption: menu_nya,
 buttons: btn_menu,
+footer: footer_nya,
 mentions: [sender, mark_slebew],
 headerType: 1
 }
 conn.sendMessage(from, but_menu, {quoted:msg})
 }
-conn.sendMessage(from, { location: { jpegThumbnail: await reSize(fs.readFileSync(thumbnail), 300, 150) }, caption: teks, buttons: button, footer: `${botName} © 2022`, mentions: [sender,ownerNomer]}, { quoted: fkontak })
 break
 case 'donate':
 case 'donasi':{
