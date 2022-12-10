@@ -7,6 +7,7 @@
   "footer": "©Yt : Ramaa Gnnz",
   "api_lolkey": "JIvNA7o4",
   "pathThumb": "./sticker/Rama.jpg",
+  "pathQris": "./sticker/qris.jpg", 
   "group":{
   "judul": "Forum Bot WhatsApp",
   "link": "https://chat.whatsapp.com/E3zewfxrc5pKE6Rzb3BuqG"
