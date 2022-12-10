@@ -1033,7 +1033,6 @@ footer: 'Klik button untuk melihat menu',
 mentions: [sender],
 buttons: [
 { buttonId: '#menu', buttonText: {displayText: '️【 𝗠𝗘𝗡𝗨 】'}, type: 1}
-{ buttonId: '#Rules', buttonText: {displayText: '️【 *RULES* 】'}, type: 1}
 ],
 headerType: 1
 }
