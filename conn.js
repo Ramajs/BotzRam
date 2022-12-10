@@ -195,12 +195,12 @@ conn.groupParticipantsUpdate(from, [sender], "remove")
 
 if (isGroup && isAutoDownTT){
 if (chats.match(/(tiktok.com)/gi)){
-reply('Url tiktok terdekteksi\nWait mengecek data url.')
+reply('Tunggu bentar, bot masih mengirim Vidio nya...')
 await sleep(3000)
 var tt_res = await fetchJson(`https://saipulanuar.ga/api/download/tiktok2?url=${chats}&apikey=jPHjZpQF`)
-reply(`𝗧𝗜𝗞𝗧𝗢𝗞 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗
+reply(`𝗧𝗜𝗞𝗧𝗢𝗞 𝗗𝗢𝗪𝗡𝗟𝗢𝗔𝗗⬇️
 
-𝘼𝙪𝙩𝙝𝙤𝙧: Ramaa Gnnz
+*Author* : Ramaa gnnz
 𝙅𝙪𝙙𝙪𝙡: ${tt_res.result.judul}
 𝙎𝙤𝙪𝙧𝙘𝙚: ${chats}
 
@@ -375,7 +375,7 @@ fs.unlinkSync(PathAuto + sender.split('@')[0] + '.json')
 }
 }
 } else if (command === 'changename') {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!fs.existsSync(PathAuto + sender.split("@")[0] + ".json")) {
 var deposit_object = {
 ID: require("crypto").randomBytes(5).toString("hex").toUpperCase(),
@@ -1016,13 +1016,13 @@ var user_name = `#GR${makeid(5)}`
 let object_user = {"id": sender, "name": user_name, "seri": res_us, "premium": false }
 db_user.push(object_user)
 fs.writeFileSync('./database/pengguna.json', JSON.stringify(db_user, 2, null))
-mentions(`*Wait, Loading user* @${sender.split("@")[0]}`, [sender])
+mentions(`*Wait, Loading user🔥* @${sender.split("@")[0]}`, [sender])
 await sleep(1500)
 var verify_teks =`───「 𝗧𝗘𝗥𝗩𝗘𝗥𝗜𝗙𝗜𝗞𝗔𝗦𝗜 」────
 
-• Name : @${sender.split('@')[0]}
-• Id : ${user_name}
-• Seri : ${res_us}
+⬣ Name : @${sender.split('@')[0]} 👤
+⬣ Id : ${user_name} 🍁
+⬣ Seri : ${res_us}  🌼
 
 SCRIPT BY : RAMAA GNNZ
 YT : https://youtube.com/@ramaagnnz961
@@ -1032,7 +1032,8 @@ text: verify_teks,
 footer: 'Klik button untuk melihat menu',
 mentions: [sender],
 buttons: [
-{ buttonId: '#menu', buttonText: {displayText: '️【𝗠𝗘𝗡𝗨】'}, type: 1}
+{ buttonId: '#menu', buttonText: {displayText: '️【 𝗠𝗘𝗡𝗨 】'}, type: 1}
+{ buttonId: '#Rules', buttonText: {displayText: '️【 *RULES* 】'}, type: 1}
 ],
 headerType: 1
 }
@@ -1040,7 +1041,7 @@ conn.sendMessage(from, buttonMessage, {quoted:msg})
 }
 break
 case 'iklan':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 var strip = '```'
 var menu_list =`
 ${strip}Telpon/Spam blokir 🚫${strip}
@@ -1074,7 +1075,6 @@ reply(menu_list)
 }
 break
 case 'menu':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
 const more = String.fromCharCode(8206)
 const readmore = more.repeat(4001)
 var no = 1
@@ -1088,20 +1088,19 @@ const mark_slebew = '0@s.whatsapp.net'
 var footer_nya =`Powerd By - @${mark_slebew.split("@")[0]}`
 var menu_nya =`${listmenu(sender,prefix,ad,namenya,premnya,usernya,romnya,tanggal,jam,no)}`
 let btn_menu = [
-{buttonId: `${prefix}donasi`, buttonText: { displayText: '【𝗗𝗢𝗡𝗔𝗦𝗜】' }, type: 1 },
-{buttonId: `${prefix}owner`, buttonText: { displayText: '【𝗢𝗪𝗡𝗘𝗥】' }, type: 1 },
-{buttonId: `${prefix}rules`, buttonText: { displayText: '【𝗥𝗨𝗟𝗘𝗦】' }, type: 1 }
+{buttonId: `${prefix}donasi`, buttonText: { displayText: '【 𝗗𝗢𝗡𝗔𝗦𝗜 】' }, type: 1 },
+{buttonId: `${prefix}owner`, buttonText: { displayText: '【 𝗢𝗪𝗡𝗘𝗥 】' }, type: 1 },
+{buttonId: `${prefix}groupbot`, buttonText: { displayText: '【 *GRUP BOT* 】' }, type: 1 }
 ]
 var but_menu = {
-text: menu_nya,
-footer: footer_nya,
+image: fs.readFileSync('./sticker/Rama.jpg'),
+caption: menu_nya,
 buttons: btn_menu,
+footer: footer_nya,
 mentions: [sender, mark_slebew],
 headerType: 1
 }
 conn.sendMessage(from, but_menu, {quoted:msg})
-}
-conn.sendMessage(m.chat, {image: fs.readFileSync('./foto.jpg'), caption:'_'}, {quoted:m})
 }
 break
 case 'donate':
@@ -1119,7 +1118,7 @@ break
 case 'infogempa':
 fetchJson(`https://saipulanuar.ga/api/info/gempa?apikey=jPHjZpQF`)
 .then(xg =>{
-reply(`*INFO GEMPA*
+reply(`「 *_INFO GEMPA_*」
 
 *tanggal:* ${xg.result.tanggal}
 *jam:* ${xg.result.jam}
@@ -1135,7 +1134,7 @@ reply(`*INFO GEMPA*
 })
 break
 case 'wikimedia':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply('Contoh:\n#wikimedia viral')
 fetchJson(`https://saipulanuar.ga/api/search/wikimedia?query=${q}&apikey=jPHjZpQF`)
 .then(wk =>{
@@ -1153,7 +1152,7 @@ case 'nulis':
 case 'nulis2':
 case 'quoteser':
 case 'quobucin':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Contoh:\n${prefix+command} saya bukan wibu`)
 reply(mess.wait)
 var buc = `https://saipulanuar.ga/api/textmaker/${command}?text=${q}&apikey=jPHjZpQF`
@@ -1164,7 +1163,7 @@ case 'attp2':
 case 'attp':
 case 'ttp2':
 case 'ttp':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Contoh:\n${prefix+command} saya wibu`)
 var nyz1 = await getBuffer(`https://saipulanuar.ga/api/maker/${command}?text=${q}&apikey=jPHjZpQF`)
 fs.writeFileSync('getpp.jpeg', nyz1)
@@ -1181,7 +1180,7 @@ fs.unlinkSync('./getpp.webp')
 }
 break
 case 'pinterest':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Contoh:\n${prefix+command} loli`)
 reply(mess.wait)
 fetchJson(`https://saipulanuar.ga/api/search/pinterest?query=${q}&apikey=jPHjZpQF`)
@@ -1191,14 +1190,14 @@ conn.sendMessage(from, { image:{url:media}, caption:`Done *${q}*`}, {quoted:msg}
 })
 break
 case 'tts':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Contoh:\n${prefix+command} hallo bro`)
 var tts = `https://saipulanuar.ga/api/text-to-audio/tts?text=${q}&idbahasa=id&apikey=jPHjZpQF`
 conn.sendMessage(sender, {audio:{url:tts}, mimetype:'audio/mpeg', ptt:true}, {quoted:msg})
 }
 break
 case 'playmp3':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply('*Contoh:*\n#playmp3 preset angel baby 30 detik')
 fetchJson(`https://api-yogipw.herokuapp.com/api/yt/playmp3?query=${q}`)
 .then(z=>{
@@ -1217,7 +1216,7 @@ if (isGroup) return reply('Media sudah dikirim dichat pribadi.')
 })
 break
 case 'soundcloud':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply('*Contoh:*\n#soundcloud https://soundcloud.com/ndaa-212683099/dj-coba-kau-ingat-ingat-kembali-seharusnya-aku-jungle-dutch-terbaru-2021-full-bass-viral-tik?utm_source=clipboard&utm_medium=text&utm_campaign=social_sharing')
 var yurl = q
 reply(mess.wait)
@@ -1239,7 +1238,7 @@ if (isGroup) return reply('Audio sudah dikirim dichat pribadi.')
 })
 break
 case 'playmp4':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply('*Contoh:*\n#playmp4 preset angel baby 30 detik')
 fetchJson(`https://api-yogipw.herokuapp.com/api/yt/playmp4?query=${q}`)
 .then(zz=>{
@@ -1258,7 +1257,7 @@ if (isGroup) return reply('Media sudah dikirim dichat pribadi.')
 })
 break
 case 'mediafire':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply('*Contoh:*\n#mediafire https://www.mediafire.com/file/451l493otr6zca4/V4.zip/file')
 let isLinks = q.match(/(?:https?:\/{2})?(?:w{3}\.)?mediafire(?:com)?\.(?:com|be)(?:\/www\?v=|\/)([^\s&]+)/)
 if (!isLinks) return reply('Link yang kamu berikan tidak valid')
@@ -1279,12 +1278,12 @@ conn.sendMessage(sender, {document:{url:baby1[0].link}, fileName:baby1[0].nama, 
 break
 case 'grupbot':
 case 'groupbot':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 reply(`${setting.group.judul}
 ${setting.group.link}`)
 break
 case 'infobot':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 reply(`𝗕𝗢𝗧 𝗜𝗡𝗙𝗢
 • Author : @${ownerNumber.split('@')[0]}
 • Owner : ${setting.ownerName}
@@ -1297,7 +1296,7 @@ reply(`𝗕𝗢𝗧 𝗜𝗡𝗙𝗢
 break
 case 'ssweb-pc':
 case 'ssweb-hp':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Masukan parameter url\n*Contoh:*\n${prefix+command} https://google.com`)
 reply(mess.wait)
 let anu =`https://leyscoders-api.herokuapp.com/api/${command}?url=${q}&apikey=IkyOgiwara`
@@ -1317,7 +1316,7 @@ if (!isOwner) return reply(mess.OnlyOwner)
 reply(`*Runtime :* ${runtime(process.uptime())}`)
 break
 case 'rules':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let text_rules =`${rulesBot()}`
 conn.sendMessage(from, { text: text_rules })
 }
@@ -1366,10 +1365,10 @@ reply('*Sukses...*')
 }
 break
 case 'owner':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 var owner_Nya = setting.ownerNumber
 sendContact(from, owner_Nya, setting.ownerName, msg)
-reply('Chat aja kak, ga usah malu')
+reply('*Tuh Ngab Nomor owner ku, Jangan di spam yah😉*')
 }
 break
 case 'room':{
@@ -1626,7 +1625,7 @@ if (isGroup) return reply("Pesan menfess kamu sudah dikirim.")
 }
 break
 case 'sc': case 'script':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let text_buysc =`*_Mau beli scriptnya? harga murah kok._*
 
 *Contact Person 📞*
@@ -1646,7 +1645,7 @@ conn.sendMessage(from, { text: text_buysc }, { quoted: msg })
 }
 break
 case 'request': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Masukan parameter text\n*Contoh:*\n${prefix+command} Req fitur antilink bg`)
 var teks = `*| REQUEST FITUR |*`
 var teks1 = `\n\nNomor : @${sender.split("@")[0]}\nPesan : ${q}`
@@ -1657,7 +1656,7 @@ conn.sendMessage(from, {text: teks + teks2 + teks1, mentions:[sender]}, {quoted:
 }
 break
 case 'report': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Masukan parameter text\n*Contoh:*\n${prefix+command} Fitur anu error bang`)
 var teks = `*| REPORT FITUR |*`
 var teks1 = `\n\nNomor : @${sender.split("@")[0]}\nPesan : ${q}`
@@ -1752,7 +1751,7 @@ break
 // CASE BY LEXXY OFFICIAL
 // JANGAN DI EDIT LAGI YA
 case 'pricelist': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let feta = await fetchJson(`https://ampibismm.my.id/api/json?bot=true&api_key=hASnfGXGkVRT2NonzLePbp3wZAmzop&action=pricelist&type=semua`)
 if (feta.status == false) return reply(feta.data.msg)
 let list = '*List Harga Layanan*\n\n'
@@ -1816,14 +1815,14 @@ reply(teks)
 break
 case 'order':
 case 'caraorder': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isGroup) return reply('Fitur Tidak Dapat Digunakan Untuk Group!')
 let capp = `*Hallo Kak Berikut Cara Order*\n\n*Followers :*\nex1 : _${prefix}followers jumlah|target [ tanpa (@) ]_\nex2 : _${prefix}followers 500|lexxy4554_\n\n*View :*\nex 1 : _${prefix}view jumlah|link_\nex 2 : _${prefix}view 10000|https://vm.tiktok.com/xxxxxxx_\n\n*Like :*\nex 1 : _${prefix}like jumlah|link_\nex 2 : _${prefix}like 10000|https://www.instagram.com/p/xxxxxxx_\n\nSekian penjelasan cara order\nSemoga anda faham dengan penjelasan ini🙏\nbeli = faham`
 conn.sendMessage(from, {text: capp}, {quoted:msg})
 }
 break
 case 'view': case 'like': case 'follower': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isGroup) return reply('Fitur Tidak Dapat Digunakan Untuk Group!')
 if (args.length < 1) return reply('Format tidak valid, jika masih belum mengerti ketik *#order*')
 let juma = q.split('|')[0] ? q.split('|')[0]: q
@@ -1872,7 +1871,7 @@ console.log(feta)
 break
 case 'chekstatus':
 case 'cekstatus': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isGroup) return reply('Fitur Tidak Dapat Digunakan Untuk Group!')
 if (!q) return reply('id ordernya mana kak?')
 var seta = await fetchJson(`https://ampibismm.my.id/api/json?bot=true&api_key=hASnfGXGkVRT2NonzLePbp3wZAmzop&action=status&order_id=${q}`)
@@ -2004,7 +2003,7 @@ await sleep(2000)
 fs.unlinkSync(media)
 break
 case 'git': case 'gitclone':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let regex1 = /(?:https|git)(?::\/\/|@)github\.com[\/:]([^\/:]+)\/(.+)/i
 if (!q) return reply('link githubnya mana?\n*Contoh:*\n#gitclone https://github.com/zeeone-ofc/Alphabot-Md')
 var linknya = q
@@ -2018,7 +2017,7 @@ conn.sendMessage(from, { document: { url: url }, fileName: filename, mimetype: '
 }
 break
 case 'badgirlserti': case 'goodgirlserti': case 'bucinserti': case 'fuckgirlserti': case 'toloserti': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`*Contoh:*\n${prefix + command} text`)
 var anu = await getBuffer(`https://api.lolhuman.xyz/api/${command}?apikey=SadTeams&name=${q}`)
 reply(mess.wait)
@@ -2041,7 +2040,7 @@ conn.sendMessage(from, { text: bot, mentions: mentioned }, { quoted: mens.length
 break
 case 'del':
 case 'delete':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!isGroup) return reply(mess.OnlyGrup)
 if (!isGroupAdmins && !isOwner) return reply(mess.GrupAdmin)
 if (!quotedMsg) return reply(`Balas chat dari bot yang ingin dihapus`)
@@ -2049,7 +2048,7 @@ if (!quotedMsg.fromMe) return reply(`Hanya bisa menghapus chat dari bot`)
 conn.sendMessage(from, { delete: { fromMe: true, id: quotedMsg.id, remoteJid: from }})
 break
 case 'linkgrup': case 'linkgc':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!isGroup) return reply(mess.OnlyGrup)
 if (!isBotGroupAdmins) return reply(mess.BotAdmin)
 var url = await conn.groupInviteCode(from).catch(() => reply(mess.error.api))
@@ -2231,7 +2230,7 @@ break
 case 'infogc':
 case 'infogrup':
 case 'infogroup':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!isGroup) return reply(mess.OnlyGrup)
 let cekgcnya =`*INFO GROUP*
 • *ID:* ${from}
@@ -2272,18 +2271,18 @@ case 'sound59':case 'sound60':case 'sound61':case 'sound62':
 case 'sound63':case 'sound64':case 'sound65':case 'sound66':
 case 'sound67':case 'sound68':case 'sound69':case 'sound70':
 case 'sound71':case 'sound72':case 'sound73':case 'sound74':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 reply(mess.wait)
 var inicdd = await getBuffer(`https://github.com/saipulanuar/Api-Github/raw/main/sound/${command}.mp3`)
 conn.sendMessage(from, {audio:inicdd, mimetype:'audio/mpeg', ptt:true}, {quoted:msg})
 break
 case 'audio1': case 'audio2': case 'audio3': case 'audio4': case 'audio5': case 'audio6': case 'audio7': case 'audio8': case 'audio9': case 'audio10': case 'audio11': case 'audio12': case 'audio13': case 'audio14': case 'audio15': case 'audio16': case 'audio17': case 'audio18': case 'audio19': case 'audio20':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 reply(mess.wait)
 conn.sendMessage(from, {audio:{url:`https://md-devs.herokuapp.com/${command}.mp3`}, mimetype:'audio/mp4', ptt:true},{quoted:msg})
 break
 case 'tourl': case 'upload':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (cekUser("premium", sender) == false) return reply(mess.OnlyPrem)
 if (isSticker || isQuotedSticker){
 await conn.downloadAndSaveMediaMessage(msg, 'sticker', `./sticker/${sender.split("@")[0]}.webp`)
@@ -2339,7 +2338,7 @@ reply(`*reply audio/video/sticker/gambar dengan pesan ${prefix+command}*`)
 break
 case 'tomp3':
 case 'toaudio':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isVideo || isQuotedVideo){
 await conn.downloadAndSaveMediaMessage(msg, 'video', `./sticker/${sender.split("@")[0]}.mp4`)
 reply(mess.wait)
@@ -2390,7 +2389,7 @@ break
 
 // CONVERT
 case 'toimg': case 'toimage':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isSticker || isQuotedSticker){
 await conn.downloadAndSaveMediaMessage(msg, "sticker", `./sticker/${sender.split("@")[0]}.webp`)
 let buffer = fs.readFileSync(`./sticker/${sender.split("@")[0]}.webp`)
@@ -2410,7 +2409,7 @@ reply('*Reply sticker nya dengan pesan #toimg*\n\n*Atau bisa sticker gif dengan 
 }
 break
 case 'tomp4': case 'tovideo':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isSticker || isQuotedSticker){
 await conn.downloadAndSaveMediaMessage(msg, "sticker", `./sticker/${sender.split("@")[0]}.webp`)
 let buffer = `./sticker/${sender.split("@")[0]}.webp`
@@ -2424,7 +2423,7 @@ reply('*Reply sticker gif dengan pesan #tovideo*')
 break
 case 'emojimix': case 'mixemoji':
 case 'emojmix': case 'emojinua':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Kirim perintah ${command} emoji1+emoji2\ncontoh : !${command} 😜+😅`)
 if (!q.includes('+')) return reply(`Format salah, contoh pemakaian !${command} 😅+😭`)
 var emo1 = q.split("+")[0]
@@ -2450,7 +2449,7 @@ case 'smeme':
 case 'stikermeme':
 case 'stickermeme':
 case 'memestiker':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 var atas = q.split('|')[0]
 var bawah = q.split('|')[1]
 if (!atas) return reply(`Kirim gambar dengan caption ${prefix+command} text_atas|text_bawah atau balas gambar yang sudah dikirim`)
@@ -2471,7 +2470,7 @@ case 'swm':
 case 'stikerwm':
 case 'stickerwm':
 case 'takesticker':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (cekUser("premium", sender) == false) return reply(mess.OnlyPrem)
 if (!q) return reply(`Kirim video/foto dengan caption ${prefix+command} packname|author atau balas video/foto yang sudah dikirim`)
 var pname = q.split('|')[0]
@@ -2495,7 +2494,7 @@ reply(`Kirim video/foto dengan caption ${prefix+command} packname|author atau ba
 }
 break
 case 'sticker': case 's': case 'stiker':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isImage || isQuotedImage){
 await conn.downloadAndSaveMediaMessage(msg, "image", `./sticker/${sender.split("@")[0]}.jpeg`)
 let buffer = fs.readFileSync(`./sticker/${sender.split("@")[0]}.jpeg`)
@@ -2518,7 +2517,7 @@ break
 case 'sgif':
 case 'stickergif':
 case 'stikergif':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isVideo && msg.message.videoMessage.seconds < 10 || isQuotedVideo && quotedMsg.videoMessage.seconds < 10) {
 await conn.downloadAndSaveMediaMessage(msg, "video", `./sticker/${sender.split("@")[0]}.mp4`)
 let buffer = fs.readFileSync(`./sticker/${sender.split("@")[0]}.mp4`)
@@ -2544,7 +2543,7 @@ reply(`Kirim video dengan caption ${prefix+command} atau balas video yang sudah 
 }
 break
 case 'cekjelek': case 'cekcantik': case 'cekganteng': case 'ceksad': case 'cekharam': case 'cekhalal': case 'cekbego': case 'cekanjing': case 'cekbiadab': case 'cekramah': case 'ceksatir': case 'cekmanis': case 'cekpahit': case 'cekhitam': case 'cekrasis': case 'cekbaik': case 'cekjahat': case 'cekkaya': case 'cekmiskin': case 'cekpintar': case 'cekbodoh': case 'cekimut': case 'cekkocak': case 'cekkadang':   
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let x25 = `./sticker/cekStats_Now.webp`
 let x26 = `./sticker/cekStats_Yes.webp`
 const x27 = [true, false][Math.floor(Math.random() * ([true, false].length))]
@@ -2559,7 +2558,7 @@ case 'jagocek':case 'nolepcek':case 'babicek':case 'bebancek':case 'baikcek':
 case 'jahatcek':case 'anjingcek':case 'haramcek':case 'pakboycek':
 case 'pakgirlcek':case 'sangecek': case 'bapercek':case 'fakboycek':case 'alimcek':case 'suhucek':
 case 'fakgirlcek':case 'kerencek':case 'wibucek':case 'pasarkascek':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 const eyy =['1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20','21','22','23','24','25','26','27','28','29','30','31','32','33','34','35','36','37','38','39','40','41','42','43','44','45','46','47','48','49','50','51','52','53','54','55','56','57','58','59','60','61','62','63','64','65','66','67','68','69','70','71','72','73','74','75','76','77','78','79','80','81','82','83','84','85','86','87','88','89','90','91','92','93','94','95','96','97','98','99','100']
 const yn = eyy[Math.floor(Math.random() * eyy.length)]
 conn.sendMessage(from, { text: `${yn}%` }, { quoted: msg })
@@ -2576,7 +2575,7 @@ case "metallic":
 case "naruto":
 case "butterfly":
 case "flaming":{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`_Contoh_\n${prefix+command} nama`)
 reply(mess.wait)
 let photooxy =`https://api.nataganz.com/api/photooxy/${command}?text=${q}&apikey=Pasha`
@@ -2584,21 +2583,21 @@ conn.sendMessage(from, {image: { url: photooxy }, caption: `Hasil dari ${command
 }
 break
 case 'wetglass':case 'multicolor3d':case 'watercolor':case 'luxurygold':case 'galaxywallpaper':case 'lighttext':case 'beautifulflower':case 'puppycute':case 'royaltext':case 'heartshaped':case 'birthdaycake':case 'galaxystyle':case 'hologram3d':case 'greenneon':case 'glossychrome':case 'greenbush':case 'metallogo':case 'noeltext':case 'glittergold':case 'textcake':case 'starsnight':case 'wooden3d':case 'textbyname':case 'writegalacy':case 'galaxybat':case 'snow3d':case 'birthdayday':case 'goldplaybutton':case 'silverplaybutton':case 'freefire':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) reply(`Contoh: #${command} nama`)
 reply(mess.wait)
 conn.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/ephoto1/${command}?apikey=${setting.api_lolkey}&text=${q}`}, caption: `Nih ${command}📸` }, { quoted: msg })
 }
 break
 case 'shadow':case 'cup':case 'cup1':case 'romance':case 'smoke':case 'burnpaper':case 'lovemessage':case 'undergrass':case 'love':case 'coffe':case 'woodheart':case 'woodenboard':case 'summer3d':case 'wolfmetal':case 'nature3d':case 'underwater':case 'goldenrose':case 'summernature':case 'letterleaves':case 'glowingneon':case 'fallleaves':case 'flamming':case 'harrypotter':case 'carvedwood':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) reply(`Contoh: #${command} nama`)
 reply(mess.wait)
 conn.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/photooxy1/${command}?apikey=${setting.api_lolkey}&text=${q}`}, caption: `Nih ${command}📸` }, { quoted: msg })
 }
 break
 case 'boneka': case 'cecan': case 'cogan': case 'darkjokes': case 'islamic': case 'mobil': case 'programing': case 'tatasurya': case 'wallhp':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 const x35  = JSON.parse(fs.readFileSync(`./function/Random_IMAGE/${command}.json`)); 
 const x36 = x35[Math.floor(Math.random() * (x35.length))]
 conn.sendMessage(from, {image:{url:x36}, caption:"Done!", mentions:[sender]},{quoted:msg})
@@ -2608,7 +2607,7 @@ break
 // BIAR GAK DI SPAM
 
 case 'bocil': case 'ukhty': case 'santuy': case 'rika': case 'hijaber': 
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (cekUser("premium", sender) == false) return reply(mess.OnlyPrem)
 reply(mess.wait)
 const x33 = JSON.parse(fs.readFileSync(`./function/Random_IMAGE/${command}.json`)); 
@@ -2616,21 +2615,21 @@ const x34 = x33[Math.floor(Math.random() * (x33.length))]
 conn.sendMessage(from, {video:{url:x34.url}, caption:"Done!", mentions:[sender]},{quoted:msg})
 break
 case 'chiisaihentai':case 'trap':case 'blowjob':case 'yaoi':case 'ecchi':case 'ahegao':case 'hololewd':case 'sideoppai':case 'animefeets':case 'animebooty':case 'animethighss':case 'hentaiparadise':case 'animearmpits':case 'hentaifemdom':case 'lewdanimegirls':case 'biganimetiddies':case 'animebellybutton':case 'hentai4everyone':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (cekUser("premium", sender) == false) return reply(mess.OnlyPrem)
 reply(mess.wait)
 conn.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/random/nsfw/${command}?apikey=${setting.api_lolkey}`}, caption: `Nih ${command}📸` }, { quoted: msg })
 }
 break
 case 'bj':case 'ero':case 'cum':case 'feet':case 'yuri':case 'trap':case 'lewd':case 'feed':case 'eron':case 'solo':case 'gasm':case 'poke':case 'anal':case 'holo':case 'tits':case 'kuni':case 'kiss':case 'erok':case 'smug':case 'baka':case 'solog':case 'feetg':case 'lewdk':case 'waifu':case 'pussy':case 'femdom':case 'cuddle':case 'hentai':case 'eroyuri':case 'cum_jpg':case 'blowjob':case 'erofeet':case 'holoero':case 'classic':case 'erokemo':case 'fox_girl':case 'futanari':case 'lewdkemo':case 'wallpaper':case 'pussy_jpg':case 'kemonomimi':case 'nsfw_avatar':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (cekUser("premium", sender) == false) return reply(mess.OnlyPrem)
 reply(mess.wait)
 conn.sendMessage(from, { image: { url: `https://api.lolhuman.xyz/api/random2/${command}?apikey=${setting.api_lolkey}`}, caption: `Nih ${command}📸` }, { quoted: msg})
 }
 break
 case 'spamcall':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (cekUser("premium", sender) == false) return reply(mess.OnlyPrem)
 if (!q) return reply(`Kirim perintah\n#${command} nomor\n\nContoh? #${command} 8xxxx\nNomor awal dari 8 bukan 62/08`)
 var data = await fetchJson(`https://arugaz.herokuapp.com/api/spamcall?no=${q}`).catch(() => reply(mess.error.api))
@@ -2643,25 +2642,25 @@ reply(data.logs)
 break
 // LOGO MAKER
 case 'girlneko': case 'gilrneko':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q1 && !q2) return reply("Masukkan text1&text2\nContoh? #girlneko aku&kamu")
 reply("[❗] SEDANG DIPROSES")
 conn.sendMessage(from, {image:{url:`https://ziy.herokuapp.com/api/maker/girlneko?text1=${q1}&text2=${q2}&apikey=xZiyy`}, caption:"done!!", mentions:[sender]},{quoted:msg})
 break
 case 'sadboy':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q1 && !q2) return reply("Masukkan text1&text2\nContoh? #sadboy aku&kamu")
 reply("[❗] SEDANG DIPROSES")
 conn.sendMessage(from, {image:{url:`https://ziy.herokuapp.com/api/maker/sadboy?text1=${q1}&text2=${q2}&apikey=xZiyy`}, caption:"done!!", mentions:[sender]},{quoted:msg})
 break
 case 'kaneki': case 'rem': case 'lolimaker':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Masukkan text\nContoh: #${command} bot`)
 reply("[❗] SEDANG DIPROSES")
 conn.sendMessage(from, {image:{url:`https://ziy.herokuapp.com/api/maker/${command}?nama=${q}&apikey=xZiyy`}, caption:"done!!", mentions:[sender]},{quoted:msg})
 break
 case 'waifu':case 'lick':case 'kiss':case 'awoo':case 'hug':case 'cry':case 'cuddle':case 'bully':case 'megumin':case 'shinobu':case 'neko':case 'slap':case 'wink':case 'dance':case 'poke':case 'glomp':case 'bite':case 'nom':case 'handhold':case 'highfive':case 'wave':case 'smile':case 'yeet':case 'bonk':case 'smug':case 'pat':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (cekUser("premium", sender) == false) return reply(mess.OnlyPrem)
 reply("[❗] SEDANG DIPROSES")
 fetchJson(`https://api.waifu.pics/sfw/${command}`).then(x => {
@@ -2673,7 +2672,7 @@ case 'amongus':
 case 'gawrgura':
 case 'anjing':
 case 'bucinstick':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 reply(mess.wait)
 let buffer = `https://api.lolhuman.xyz/api/sticker/${command}?apikey=${setting.api_lolkey}`
 conn.sendMessage(from, { sticker:{url:buffer}, mimetype:'image/webp'}, { quoted: msg })
@@ -2681,7 +2680,7 @@ conn.sendMessage(from, { sticker:{url:buffer}, mimetype:'image/webp'}, { quoted:
 break
 // PRIMBON
 case 'ramalanjodoh': case 'ramaljodoh': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Example :\n${prefix+command} Yanto, 7, 7, 2005, Yanti, 16, 11, 2004`)
 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = q.split`,`
 let anu = await primbon.ramalan_jodoh(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
@@ -2690,7 +2689,7 @@ reply(`> *Nama Anda :* ${anu.message.nama_anda.nama}\n> *Lahir Anda :* ${anu.mes
 }
 break
 case 'nomorhoki':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Example :\n${prefix+command} 6288292024190`)
 let anu = await primbon.nomer_hoki(q)
 if (anu.status == false) return reply(anu.message)
@@ -2698,7 +2697,7 @@ reply (`> *Nomor HP :* ${anu.message.nomer_hp}\n> *Angka Shuzi :* ${anu.message.
 }
 break
 case 'artimimpi': case 'tafsirmimpi': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
  if (!q) return reply( `Example :\n${prefix+command} belanja`)
 let anu = await primbon.tafsir_mimpi(q)
 if (anu.status == false) return m.reply(anu.message)
@@ -2706,7 +2705,7 @@ reply(`> *Mimpi :* ${anu.message.mimpi}\n> *Arti :* ${anu.message.arti}\n> *Solu
 }
 break
 case 'ramalanjodohbali': case 'ramaljodohbali': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply( `Example :\n${prefix+command} Yanto, 7, 7, 2005, Yanti, 16, 11, 2004`)
 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = q.split`,`
 let anu = await primbon.ramalan_jodoh_bali(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
@@ -2715,7 +2714,7 @@ reply(`> *Nama Anda :* ${anu.message.nama_anda.nama}\n> *Lahir Anda :* ${anu.mes
 }
 break
 case 'suamiistri': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply( `Example :\n${prefix+command} Yanto, 7, 7, 2005, Yanti, 16, 11, 2004`)
 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = q.split`,`
 let anu = await primbon.suami_istri(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
@@ -2724,7 +2723,7 @@ reply(`> *Nama Suami :* ${anu.message.suami.nama}\n> *Lahir Suami :* ${anu.messa
 }
 break
 case 'ramalancinta': case 'ramalcinta': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Example :\n${prefix+command} Yanto, 7, 7, 2005, Yanti, 16, 11, 2004`)
 let [nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2] = q.split`,`
 let anu = await primbon.ramalan_cinta(nama1, tgl1, bln1, thn1, nama2, tgl2, bln2, thn2)
@@ -2733,7 +2732,7 @@ reply(`> *Nama Anda :* ${anu.message.nama_anda.nama}\n> *Lahir Anda :* ${anu.mes
 }
 break
 case 'artinama':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Example :\n${prefix+command} Yanto`)
 let anu = await primbon.arti_nama(text)
 if (anu.status == false) return reply(anu.message)
@@ -2741,7 +2740,7 @@ reply(`> *Nama :* ${q}\n> *Arti :* ${anu.message.arti}\n> *Catatan :* ${anu.mess
 }
 break
 case 'kecocokannama': case 'cocoknama': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply( `Example :\n${prefix+command} yanto, 7, 7, 2005`)
 let [nama, tgl, bln, thn] = q.split`,`
 let anu = await primbon.kecocokan_nama(nama, tgl, bln, thn)
@@ -2750,7 +2749,7 @@ reply(`> *Nama :* ${anu.message.nama}\n> *Lahir :* ${anu.message.tgl_lahir}\n> *
 }
 break
 case 'kecocokanpasangan': case 'cocokpasangan': case 'pasangan': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Example :\n${prefix+command} yanto|yanti`)
 let [nama1, nama2] = q.split`|`
 let anu = await primbon.kecocokan_nama_pasangan(nama1, nama2)
@@ -2759,7 +2758,7 @@ reply(`> *Nama Anda :* ${anu.message.nama_anda}\n> *Nama Pasangan :* ${anu.messa
 }
 break
 case 'sifatusaha': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!q) return reply(`Example : ${prefix+command} 24, 10, 2005`)
 let [tgl, bln, thn] = q.split`,`
 let anu = await primbon.sifat_usaha_bisnis(tgl, bln, thn)
@@ -2768,7 +2767,7 @@ reply(`> *Lahir :* ${anu.message.hari_lahir}\n> *Usaha :* ${anu.message.usaha}`)
 }
 break
 case 'halah': case 'hilih': case 'huluh': case 'heleh': case 'holoh': 
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (!quoted && !q) reply(`Kirim/reply text dengan caption *${prefix+command}*`)
 var ter = command[0].toLowerCase()
 var tex = quoted ? quoted.text ? quoted.text : q ? q : text : q ? q : text
@@ -2777,7 +2776,7 @@ break
 
 // AUDIO CHANGER
 case 'bass':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isQuotedAudio){
 var buffer = await conn.downloadAndSaveMediaMessage(msg, 'audio', `./sticker/${command}.mp3`)
 let ran = 'sticker/'+getRandom('.mp3')
@@ -2797,7 +2796,7 @@ reply(`Balas audio yang ingin diubah dengan caption *#${command}*`)
 break
 
 case 'blown':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isQuotedAudio){
 var buffer = await conn.downloadAndSaveMediaMessage(msg, 'audio', `./sticker/${command}.mp3`)
 let ran = 'sticker/'+getRandom('.mp3')
@@ -2817,7 +2816,7 @@ reply(`Balas audio yang ingin diubah dengan caption *#${command}*`)
 break
 
 case 'deep':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isQuotedAudio){
 var buffer = await conn.downloadAndSaveMediaMessage(msg, 'audio', `./sticker/${command}.mp3`)
 let ran = 'sticker/'+getRandom('.mp3')
@@ -2837,7 +2836,7 @@ reply(`Balas audio yang ingin diubah dengan caption *#${command}*`)
 break
 
 case 'earrape':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isQuotedAudio){
 var buffer = await conn.downloadAndSaveMediaMessage(msg, 'audio', `./sticker/${command}.mp3`)
 let ran = 'sticker/'+getRandom('.mp3')
@@ -2857,7 +2856,7 @@ reply(`Balas audio yang ingin diubah dengan caption *#${command}*`)
 break
 
 case 'fast':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isQuotedAudio){
 var buffer = await conn.downloadAndSaveMediaMessage(msg, 'audio', `./sticker/${command}.mp3`)
 let ran = 'sticker/'+getRandom('.mp3')
@@ -2877,7 +2876,7 @@ reply(`Balas audio yang ingin diubah dengan caption *#${command}*`)
 break
 
 case 'fat':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isQuotedAudio){
 var buffer = await conn.downloadAndSaveMediaMessage(msg, 'audio', `./sticker/${command}.mp3`)
 let ran = 'sticker/'+getRandom('.mp3')
@@ -2897,7 +2896,7 @@ reply(`Balas audio yang ingin diubah dengan caption *#${command}*`)
 break
 
 case 'nightcore':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isQuotedAudio){
 var buffer = await conn.downloadAndSaveMediaMessage(msg, 'audio', `./sticker/${command}.mp3`)
 let ran = 'sticker/'+getRandom('.mp3')
@@ -2917,7 +2916,7 @@ reply(`Balas audio yang ingin diubah dengan caption *#${command}*`)
 break
 
 case 'reverse':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isQuotedAudio){
 var buffer = await conn.downloadAndSaveMediaMessage(msg, 'audio', `./sticker/${command}.mp3`)
 let ran = 'sticker/'+getRandom('.mp3')
@@ -2937,7 +2936,7 @@ reply(`Balas audio yang ingin diubah dengan caption *#${command}*`)
 break
 
 case 'robot':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isQuotedAudio){
 var buffer = await conn.downloadAndSaveMediaMessage(msg, 'audio', `./sticker/${command}.mp3`)
 let ran = 'sticker/'+getRandom('.mp3')
@@ -2957,7 +2956,7 @@ reply(`Balas audio yang ingin diubah dengan caption *#${command}*`)
 break
 
 case 'slow':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isQuotedAudio){
 var buffer = await conn.downloadAndSaveMediaMessage(msg, 'audio', `./sticker/${command}.mp3`)
 let ran = 'sticker/'+getRandom('.mp3')
@@ -2977,7 +2976,7 @@ reply(`Balas audio yang ingin diubah dengan caption *#${command}*`)
 break
 
 case 'smooth':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isQuotedAudio){
 var buffer = await conn.downloadAndSaveMediaMessage(msg, 'audio', `./sticker/${command}.mp3`)
 let ran = 'sticker/'+getRandom('.mp3')
@@ -2997,7 +2996,7 @@ reply(`Balas audio yang ingin diubah dengan caption *#${command}*`)
 break
 
 case 'tupai':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (isQuotedAudio){
 var buffer = await conn.downloadAndSaveMediaMessage(msg, 'audio', `./sticker/${command}.mp3`)
 let ran = 'sticker/'+getRandom('.mp3')
@@ -3017,21 +3016,21 @@ reply(`Balas audio yang ingin diubah dengan caption *#${command}*`)
 break
 
 case 'wallpaperislami':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let kcle = await fetchJson(`https://raw.githubusercontent.com/Aprilia3/RestApi/master/data/Islamic.json`)
 let random = kcle[Math.floor(Math.random() * kcle.length)]
 conn.sendMessage(from, { image: { url: random }, caption: `Nih Kak` }, { quoted: msg })
 }
 break
 case 'wallpaperinori':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let kuxe = await fetchJson(`https://raw.githubusercontent.com/qisyana/senku/main/storages/inori-pic.json`)
 let random = kuxe[Math.floor(Math.random() * kuxe.length)]
 conn.sendMessage(from, { image: { url: random }, caption: `Nih Kak` }, { quoted: msg })
 }
 break
 case 'wallpapercyber':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let xpwl = await fetchJson(`https://raw.githubusercontent.com/Aprilia3/RestApi/master/data/CyberSpace.json`)
 let random = xpwl[Math.floor(Math.random() * xpwl.length)]
 conn.sendMessage(from, { image: { url: random }, caption: `Nih Kak` }, { quoted: msg })
@@ -3045,56 +3044,56 @@ case 'husbu':
 case 'milf':
 case 'cosplay':
 case 'wallml':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let eek = await fetchJson(`https://raw.githubusercontent.com/Arya-was/endak-tau/main/${command}.json`)
 let random = eek[Math.floor(Math.random() * eek.length)]
 conn.sendMessage(from, { image: { url: random }, caption: `Nih Kak` }, { quoted: msg })
 }
 break
 case 'wallpaperteknologi':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let toth = await fetchJson(`https://raw.githubusercontent.com/Aprilia3/RestApi/master/data/Technology.json`)
 let random = toth[Math.floor(Math.random() * toth.length)]
 conn.sendMessage(from, { image: { url: random }, caption: `Nih Kak` }, { quoted: msg })
 }
 break
 case 'wallpaperanime':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let tozs = await fetchJson(`https://raw.githubusercontent.com/qisyana/senku/main/storages/anime-wallpaper-pic.json`)
 let random = tozs[Math.floor(Math.random() * tozs.length)]
 conn.sendMessage(from, { image: { url: random }, caption: `Nih Kak` }, { quoted: msg })
 }
 break
 case 'wallpapergamer':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let toew = await fetchJson(`https://raw.githubusercontent.com/Aprilia3/RestApi/master/data/GameWallp.json`)
 let random = toew[Math.floor(Math.random() * toew.length)]
 conn.sendMessage(from, { image: { url: random }, caption: `Nih Kak` }, { quoted: msg })
 }
 break
 case 'wallpaperprogamer':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let xeke = await fetchJson(`https://raw.githubusercontent.com/Aprilia3/RestApi/master/data/Programming.json`)
 let random = xeke[Math.floor(Math.random() * xeke.length)]
 conn.sendMessage(from, { image: { url: random }, caption: `Nih Kak` }, { quoted: msg })
 }
 break
 case 'wallpapermeme':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let crkr = await fetchJson(`https://raw.githubusercontent.com/Aprilia3/RestApi/master/data/meme.json`)
 let random = crkr[Math.floor(Math.random() * crkr.length)]
 conn.sendMessage(from, { image: { url: random }, caption: `Nih Kak` }, { quoted: msg })
 }
 break
 case 'wallpaper':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let crpe = await fetchJson(`https://raw.githubusercontent.com/Aprilia3/RestApi/master/data/Mountain.json`)
 let random = crpe[Math.floor(Math.random() * crpe.length)]
 conn.sendMessage(from, { image: { url: random }, caption: `Nih Kak` }, { quoted: msg })
 }
 break
 case 'ppcouple': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let anu = await fetchJson('https://raw.githubusercontent.com/iamriz7/kopel_/main/kopel.json')
 let random = anu[Math.floor(Math.random() * anu.length)]
 conn.sendMessage(from, { image: { url: random.male }, caption: `Foto Couple Male` }, { quoted: msg })
@@ -3103,289 +3102,289 @@ conn.sendMessage(from, { image: { url: random.female }, caption: `Fofo Couple Fe
 break
 
 case 'cerpen-anak':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`anak`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-bahasadaerah':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`bahasa daerah`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-bahasainggris':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`bahasa Inggris`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-bahasajawa':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`bahasa jawa`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-bahasasunda':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`bahasa sunda`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-budaya':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`budaya`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-cinta':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`cinta`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-cintaislami':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`cinta islami`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-cintapertama':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`cinta pertama`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-cintaromantis':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`cinta romantis`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-cintasedih':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`cinta sedih`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-cintasegitiga':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`Cinta segitiga`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-cintasejati':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`cinta sejati`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-galau':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`galau`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-gokil':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`gokil`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-inspiratif':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`inspiratif`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-jepang':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`jepang`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-kehidupan':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`kehidupan`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-keluarga':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`keluarga`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-kisahnyata':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`kisah nyata`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-korea':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`korea`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-kristen':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`kristen`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-liburan':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`liburan`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-malaysia':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`malaysia`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-mengharukan':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`mengharukan`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-misteri':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`misteri`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-motivasi':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`motivasi`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-nasihat':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`nasihat`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-nasionalisme':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`nasionalisme`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-olahraga':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`olahraga`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-patahhati':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`patah hati`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-penantian':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`penantian`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-pendidikan':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`pendidikan`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-pengalaman':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`pengalaman pribadi`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-pengorbanan':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`pengorbanan`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-penyesalan':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`penyesalan`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-perjuangan':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`perjuangan`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-perpisahan':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`perpisahan`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-persahabatan':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`persahabatan`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-petualangan':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`petualangan`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-ramadhan':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`ramadhan`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-remaja':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`remaja`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-rindu':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`rindu`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-rohani':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`rohani`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-romantis':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`romantis`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-sastra':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`sastra`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-sedih':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`sedih`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
 break
 case 'cerpen-sejarah':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 let cerpe = await cerpen(`sejarah`)
 reply(`⭔ _*Title :*_ ${cerpe.title}\n⭔ _*Author :*_ ${cerpe.author}\n⭔ _*Category :*_ ${cerpe.kategori}\n⭔ _*Pass Moderation :*_ ${cerpe.lolos}\n⭔ _*Story :*_\n${cerpe.cerita}`)
 }
@@ -3408,7 +3407,7 @@ case 'panties':
 case 'pussy':
 case 'thighs':
 case 'yuri':{
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (cekUser("premium", sender) == false) return reply(mess.OnlyPrem)
 let cndn = await fetchJson(`https://raw.githubusercontent.com/jepribarus/JB-Api/main/nsfw/${command}.json`)
 let random = cndn[Math.floor(Math.random() * cndn.length)]
@@ -3416,14 +3415,14 @@ conn.sendMessage(m.chat, { image: { url: random }, caption: `Nih Kak` }, { quote
 }
 break
 case 'jadibot': {
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (cekUser("premium", sender) == false) return reply(mess.OnlyPrem)
 if (isGroup) return reply('Gunakan bot di privat chat')
 jadibot(conn, msg, from)
 }
 break
 case 'listjadibot':
-if (cekUser("id", sender) == null) return reply(mess.OnlyUser)
+if (cekUser("id", sender) == null) return conn.sendMessage(from, { text: mess.OnlyUser, buttons: [{ buttonId: '#verify', buttonText: { displayText: 'Verify' }, type: 1 }], footer: `Powerd By - @0`, mentions: ["0@whatsapp.net"]}, { quoted: msg })
 if (cekUser("premium", sender) == false) return reply(mess.OnlyPrem)
 if (isGroup) return reply('Gunakan bot di privat chat')
 try {
@@ -3761,25 +3760,11 @@ reply('*Sukses...*')
 break
 default:
 
-/*━━━━━━━[ Function Menfess ]━━━━━━━*/
-
-// Function Menfess Auto Bales
-// Jangan Lu Edit Lagi Disini
-// Buy No enc? Chat Wa
-// Wa Guwe : 083834558105
+//Ngetes
 
 var _0x1a6220=_0x4a33;(function(_0x5b325d,_0xd37330){var _0x15f0df=_0x4a33,_0x17b9a4=_0x5b325d();while(!![]){try{var _0x5034a9=parseInt(_0x15f0df(0x1d3))/0x1*(-parseInt(_0x15f0df(0x1ca))/0x2)+-parseInt(_0x15f0df(0x1d4))/0x3*(parseInt(_0x15f0df(0x1c5))/0x4)+parseInt(_0x15f0df(0x1c7))/0x5*(-parseInt(_0x15f0df(0x1cf))/0x6)+-parseInt(_0x15f0df(0x1d5))/0x7*(parseInt(_0x15f0df(0x1c9))/0x8)+-parseInt(_0x15f0df(0x1cc))/0x9+-parseInt(_0x15f0df(0x1c4))/0xa+parseInt(_0x15f0df(0x1cd))/0xb;if(_0x5034a9===_0xd37330)break;else _0x17b9a4['push'](_0x17b9a4['shift']());}catch(_0x1d82f8){_0x17b9a4['push'](_0x17b9a4['shift']());}}}(_0x351e,0x54a56));function _0x4a33(_0x1e5c04,_0x200f07){var _0x351e1e=_0x351e();return _0x4a33=function(_0x4a33ba,_0x1cdc80){_0x4a33ba=_0x4a33ba-0x1c3;var _0x110a2e=_0x351e1e[_0x4a33ba];return _0x110a2e;},_0x4a33(_0x1e5c04,_0x200f07);}function _0x351e(){var _0x26a0e1=['pesan\x20diteruskan','1103568ZGfugO','sendMessage','message','text','445736reezra','18tskWyb','1168237exHeIM','messages','4186710kRyETk','297452lFwhFR','type','10QPbKSn','teman','16yYTSyk','2wHOPdZ','conversation','2985354kCXAlP','29597029dyJWde'];_0x351e=function(){return _0x26a0e1;};return _0x351e();}if(!isCmd){if(cekPesan('id',sender)==null)return;if(cekPesan(_0x1a6220(0x1c8),sender)==![])return;if(m[_0x1a6220(0x1c3)][0x0][_0x1a6220(0x1c6)]==_0x1a6220(0x1cb)||m[_0x1a6220(0x1c3)][0x0]['type']=='extendedTextMessage'){try{var chat_anonymous=m[_0x1a6220(0x1c3)][0x0][_0x1a6220(0x1d1)]['extendedTextMessage'][_0x1a6220(0x1d2)];}catch(_0x2d0d82){var chat_anonymous=m[_0x1a6220(0x1c3)][0x0][_0x1a6220(0x1d1)][_0x1a6220(0x1cb)];}let text_nya_menfes='*ANONYMOUS\x20CHAT*\x0a💬\x20:\x20'+chat_anonymous;conn[_0x1a6220(0x1d0)](cekPesan(_0x1a6220(0x1c8),sender),{'text':text_nya_menfes}),conn['sendMessage'](from,{'text':_0x1a6220(0x1ce)},{'quoted':msg});}}
 
-// Bang yg ini knp di enc?
-// Gua belike : kamu nanya:v
-
-// Kan di thumbnail no enc 100%?
-// Gua belike : function nya langka bro
-
-/*━━━━━━━━━━━━━━━━━━━━━━━━━━━━*/
-
-// AUTHOR : LEXXY OFFICIAL
-// INI CONSOLE LOG JNGN EDIT
+//Jan di edit biar gk eror
 
 }} catch (err) {
 console.log(color('[ERROR]', 'red'), err)
